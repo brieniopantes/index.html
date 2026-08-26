@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood Auth - Verificação</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #09090b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: sans-serif;
+    }
+
+    /* Estilo do Botão Vermelho Gigante */
+    .verify-container {
+      text-align: center;
+      background: #111113;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 16px;
+      padding: 50px 40px;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.15);
+    }
+
+    .verify-title {
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .verify-subtitle {
+      color: #a1a1aa;
+      font-size: 14px;
+      margin-bottom: 30px;
+      line-height: 1.4;
+    }
+
+    .btn-red {
+      display: inline-block;
+      background-color: #dc2626;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
+      width: 100%;
+    }
+
+    .btn-red:hover {
+      background-color: #b91c1c;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
+    }
+
+    /* Estilos do Card de Sucesso (Animado) */
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes stroke {
+      100% { stroke-dashoffset: 0; }
+    }
+
+    @keyframes scale {
+      0%, 100% { transform: none; }
+      50% { transform: scale3d(1.1, 1.1, 1); }
+    }
+
+    @keyframes glowPulse {
+      0% { box-shadow: 0 0 15px rgba(34, 197, 94, 0.2); }
+      50% { box-shadow: 0 0 35px rgba(34, 197, 94, 0.5); }
+      100% { box-shadow: 0 0 15px rgba(34, 197, 94, 0.2); }
+    }
+
+    .success-card {
+      display: none; /* Começa oculto, aparece via script se necessário ou no callback */
+      background: #111113;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, glowPulse 3s infinite;
+    }
+
+    .checkmark-circle {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px auto;
+    }
+
+    .checkmark {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: block;
+      stroke-width: 3;
+      stroke: #22c55e;
+      stroke-miterlimit: 10;
+      animation: scale .3s ease-in-out .9s both;
+    }
+
+    .checkmark-check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: stroke 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.4s forwards;
+    }
+
+    .success-title {
+      color: #22c55e;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .success-text {
+      color: #a1a1aa;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TELA 1: O Botão Vermelho Gigante -->
+  <div id="verifyView" class="verify-container">
+    <h2 class="verify-title">Blood Auth</h2>
+    <p class="verify-subtitle">Clique no botão abaixo para iniciar sua autenticação segura no servidor.</p>
+    <!-- Substitua o link do href abaixo pela URL gerada no Discord Developer Portal -->
+    <a href="https://discord.com/oauth2/authorize?client_id=1542028507796865024&response_type=code&redirect_uri=https%3A%2F%2Fbloxtools.site%2Foauth2%2Fcallback&scope=identify+guilds.join" class="btn-red">Concluir Verificação</a>
+  </div>
+
+  <!-- TELA 2: Sucesso Animado (Caso queira testar na home) -->
+  <div id="successView" class="success-card">
+    <div class="checkmark-circle">
+      <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="23" fill="none" stroke="#22c55e" stroke-width="2"/>
+        <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+      </svg>
+    </div>
+    <h2 class="success-title">Verificação Concluída!</h2>
+    <p class="success-text">Você foi autenticado com sucesso no <strong>Blood Auth</strong>.<br>Já pode fechar esta página.</p>
+  </div>
+
+</body>
+</html>
